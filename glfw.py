@@ -477,7 +477,8 @@ def CreateWindow(width=640, height=480, title="GLFW Window", monitor=None, share
 def DestroyWindow(window):
     index = __windows__.index(window)
     _glfw.glfwDestroyWindow(window)
-    del __windows__[index]
+    # We do not delete window from the list (or it would impact windows numbering)
+    # del __windows__[index]
     del __c_callbacks__[index]
     del __py_callbacks__[index]
 
