@@ -368,7 +368,7 @@ GetMonitorName.restype = c_char_p
 #GetVideoMode                = _glfw.glfwGetVideoMode
 
 # --- Gama --------------------------------------------------------------------
-#SetGamma                   = _glfw.glfwSetGamma
+SetGamma                   = _glfw.glfwSetGamma
 #GetGammaRamp               = _glfw.glfwGetGammaRamp
 #SetGammaRamp               = _glfw.glfwSetGammaRamp
 
@@ -429,6 +429,7 @@ GetClipboardString.restype = c_char_p
 
 # --- Timer -------------------------------------------------------------------
 GetTime                    = _glfw.glfwGetTime
+GetTime.restype = c_double
 SetTime                    = _glfw.glfwSetTime
 
 # --- Context -----------------------------------------------------------------
