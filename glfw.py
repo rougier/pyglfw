@@ -53,264 +53,264 @@ _glfw = CDLL(_glfw_file)
 
 
 # --- Version -----------------------------------------------------------------
-VERSION_MAJOR      = 3
-VERSION_MINOR      = 0
-VERSION_REVISION   = 1
-__version__ = VERSION_MAJOR, VERSION_MINOR, VERSION_REVISION 
+GLFW_VERSION_MAJOR      = 3
+GLFW_VERSION_MINOR      = 0
+GLFW_VERSION_REVISION   = 1
+__version__ = GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION 
 
 # --- Input handling definitions ----------------------------------------------
-RELEASE            = 0
-PRESS              = 1
-REPEAT             = 2
+GLFW_RELEASE            = 0
+GLFW_PRESS              = 1
+GLFW_REPEAT             = 2
 
 # --- Keys --------------------------------------------------------------------
 
 # --- The unknown key ---------------------------------------------------------
-KEY_UNKNOWN          = -1
+GLFW_KEY_UNKNOWN          = -1
 
 # --- Printable keys ----------------------------------------------------------
-KEY_SPACE            = 32
-KEY_APOSTROPHE       = 39 # ''
-KEY_COMMA            = 44 # ,
-KEY_MINUS            = 45 # -
-KEY_PERIOD           = 46 # .
-KEY_SLASH            = 47 # /
-KEY_0                = 48
-KEY_1                = 49
-KEY_2                = 50
-KEY_3                = 51
-KEY_4                = 52
-KEY_5                = 53
-KEY_6                = 54
-KEY_7                = 55
-KEY_8                = 56
-KEY_9                = 57
-KEY_SEMICOLON        = 59 # ;
-KEY_EQUAL            = 61 # =
-KEY_A                = 65
-KEY_B                = 66
-KEY_C                = 67
-KEY_D                = 68
-KEY_E                = 69
-KEY_F                = 70
-KEY_G                = 71
-KEY_H                = 72
-KEY_I                = 73
-KEY_J                = 74
-KEY_K                = 75
-KEY_L                = 76
-KEY_M                = 77
-KEY_N                = 78
-KEY_O                = 79
-KEY_P                = 80
-KEY_Q                = 81
-KEY_R                = 82
-KEY_S                = 83
-KEY_T                = 84
-KEY_U                = 85
-KEY_V                = 86
-KEY_W                = 87
-KEY_X                = 88
-KEY_Y                = 89
-KEY_Z                = 90
-KEY_LEFT_BRACKET     = 91  # [
-KEY_BACKSLASH        = 92  # \
-KEY_RIGHT_BRACKET    = 93  # ]
-KEY_GRAVE_ACCENT     = 96  # `
-KEY_WORLD_1          = 161 # non-US #1
-KEY_WORLD_2          = 162 # non-US #2
+GLFW_KEY_SPACE            = 32
+GLFW_KEY_APOSTROPHE       = 39 # ''
+GLFW_KEY_COMMA            = 44 # ,
+GLFW_KEY_MINUS            = 45 # -
+GLFW_KEY_PERIOD           = 46 # .
+GLFW_KEY_SLASH            = 47 # /
+GLFW_KEY_0                = 48
+GLFW_KEY_1                = 49
+GLFW_KEY_2                = 50
+GLFW_KEY_3                = 51
+GLFW_KEY_4                = 52
+GLFW_KEY_5                = 53
+GLFW_KEY_6                = 54
+GLFW_KEY_7                = 55
+GLFW_KEY_8                = 56
+GLFW_KEY_9                = 57
+GLFW_KEY_SEMICOLON        = 59 # ;
+GLFW_KEY_EQUAL            = 61 # =
+GLFW_KEY_A                = 65
+GLFW_KEY_B                = 66
+GLFW_KEY_C                = 67
+GLFW_KEY_D                = 68
+GLFW_KEY_E                = 69
+GLFW_KEY_F                = 70
+GLFW_KEY_G                = 71
+GLFW_KEY_H                = 72
+GLFW_KEY_I                = 73
+GLFW_KEY_J                = 74
+GLFW_KEY_K                = 75
+GLFW_KEY_L                = 76
+GLFW_KEY_M                = 77
+GLFW_KEY_N                = 78
+GLFW_KEY_O                = 79
+GLFW_KEY_P                = 80
+GLFW_KEY_Q                = 81
+GLFW_KEY_R                = 82
+GLFW_KEY_S                = 83
+GLFW_KEY_T                = 84
+GLFW_KEY_U                = 85
+GLFW_KEY_V                = 86
+GLFW_KEY_W                = 87
+GLFW_KEY_X                = 88
+GLFW_KEY_Y                = 89
+GLFW_KEY_Z                = 90
+GLFW_KEY_LEFT_BRACKET     = 91  # [
+GLFW_KEY_BACKSLASH        = 92  # \
+GLFW_KEY_RIGHT_BRACKET    = 93  # ]
+GLFW_KEY_GRAVE_ACCENT     = 96  # `
+GLFW_KEY_WORLD_1          = 161 # non-US #1
+GLFW_KEY_WORLD_2          = 162 # non-US #2
 
 # --- Function keys -----------------------------------------------------------
-KEY_ESCAPE           = 256
-KEY_ENTER            = 257
-KEY_TAB              = 258
-KEY_BACKSPACE        = 259
-KEY_INSERT           = 260
-KEY_DELETE           = 261
-KEY_RIGHT            = 262
-KEY_LEFT             = 263
-KEY_DOWN             = 264
-KEY_UP               = 265
-KEY_PAGE_UP          = 266
-KEY_PAGE_DOWN        = 267
-KEY_HOME             = 268
-KEY_END              = 269
-KEY_CAPS_LOCK        = 280
-KEY_SCROLL_LOCK      = 281
-KEY_NUM_LOCK         = 282
-KEY_PRINT_SCREEN     = 283
-KEY_PAUSE            = 284
-KEY_F1               = 290
-KEY_F2               = 291
-KEY_F3               = 292
-KEY_F4               = 293
-KEY_F5               = 294
-KEY_F6               = 295
-KEY_F7               = 296
-KEY_F8               = 297
-KEY_F9               = 298
-KEY_F10              = 299
-KEY_F11              = 300
-KEY_F12              = 301
-KEY_F13              = 302
-KEY_F14              = 303
-KEY_F15              = 304
-KEY_F16              = 305
-KEY_F17              = 306
-KEY_F18              = 307
-KEY_F19              = 308
-KEY_F20              = 309
-KEY_F21              = 310
-KEY_F22              = 311
-KEY_F23              = 312
-KEY_F24              = 313
-KEY_F25              = 314
-KEY_KP_0             = 320
-KEY_KP_1             = 321
-KEY_KP_2             = 322
-KEY_KP_3             = 323
-KEY_KP_4             = 324
-KEY_KP_5             = 325
-KEY_KP_6             = 326
-KEY_KP_7             = 327
-KEY_KP_8             = 328
-KEY_KP_9             = 329
-KEY_KP_DECIMAL       = 330
-KEY_KP_DIVIDE        = 331
-KEY_KP_MULTIPLY      = 332
-KEY_KP_SUBTRACT      = 333
-KEY_KP_ADD           = 334
-KEY_KP_ENTER         = 335
-KEY_KP_EQUAL         = 336
-KEY_LEFT_SHIFT       = 340
-KEY_LEFT_CONTROL     = 341
-KEY_LEFT_ALT         = 342
-KEY_LEFT_SUPER       = 343
-KEY_RIGHT_SHIFT      = 344
-KEY_RIGHT_CONTROL    = 345
-KEY_RIGHT_ALT        = 346
-KEY_RIGHT_SUPER      = 347
-KEY_MENU             = 348
-KEY_LAST             = KEY_MENU
+GLFW_KEY_ESCAPE           = 256
+GLFW_KEY_ENTER            = 257
+GLFW_KEY_TAB              = 258
+GLFW_KEY_BACKSPACE        = 259
+GLFW_KEY_INSERT           = 260
+GLFW_KEY_DELETE           = 261
+GLFW_KEY_RIGHT            = 262
+GLFW_KEY_LEFT             = 263
+GLFW_KEY_DOWN             = 264
+GLFW_KEY_UP               = 265
+GLFW_KEY_PAGE_UP          = 266
+GLFW_KEY_PAGE_DOWN        = 267
+GLFW_KEY_HOME             = 268
+GLFW_KEY_END              = 269
+GLFW_KEY_CAPS_LOCK        = 280
+GLFW_KEY_SCROLL_LOCK      = 281
+GLFW_KEY_NUM_LOCK         = 282
+GLFW_KEY_PRINT_SCREEN     = 283
+GLFW_KEY_PAUSE            = 284
+GLFW_KEY_F1               = 290
+GLFW_KEY_F2               = 291
+GLFW_KEY_F3               = 292
+GLFW_KEY_F4               = 293
+GLFW_KEY_F5               = 294
+GLFW_KEY_F6               = 295
+GLFW_KEY_F7               = 296
+GLFW_KEY_F8               = 297
+GLFW_KEY_F9               = 298
+GLFW_KEY_F10              = 299
+GLFW_KEY_F11              = 300
+GLFW_KEY_F12              = 301
+GLFW_KEY_F13              = 302
+GLFW_KEY_F14              = 303
+GLFW_KEY_F15              = 304
+GLFW_KEY_F16              = 305
+GLFW_KEY_F17              = 306
+GLFW_KEY_F18              = 307
+GLFW_KEY_F19              = 308
+GLFW_KEY_F20              = 309
+GLFW_KEY_F21              = 310
+GLFW_KEY_F22              = 311
+GLFW_KEY_F23              = 312
+GLFW_KEY_F24              = 313
+GLFW_KEY_F25              = 314
+GLFW_KEY_KP_0             = 320
+GLFW_KEY_KP_1             = 321
+GLFW_KEY_KP_2             = 322
+GLFW_KEY_KP_3             = 323
+GLFW_KEY_KP_4             = 324
+GLFW_KEY_KP_5             = 325
+GLFW_KEY_KP_6             = 326
+GLFW_KEY_KP_7             = 327
+GLFW_KEY_KP_8             = 328
+GLFW_KEY_KP_9             = 329
+GLFW_KEY_KP_DECIMAL       = 330
+GLFW_KEY_KP_DIVIDE        = 331
+GLFW_KEY_KP_MULTIPLY      = 332
+GLFW_KEY_KP_SUBTRACT      = 333
+GLFW_KEY_KP_ADD           = 334
+GLFW_KEY_KP_ENTER         = 335
+GLFW_KEY_KP_EQUAL         = 336
+GLFW_KEY_LEFT_SHIFT       = 340
+GLFW_KEY_LEFT_CONTROL     = 341
+GLFW_KEY_LEFT_ALT         = 342
+GLFW_KEY_LEFT_SUPER       = 343
+GLFW_KEY_RIGHT_SHIFT      = 344
+GLFW_KEY_RIGHT_CONTROL    = 345
+GLFW_KEY_RIGHT_ALT        = 346
+GLFW_KEY_RIGHT_SUPER      = 347
+GLFW_KEY_MENU             = 348
+GLFW_KEY_LAST             = GLFW_KEY_MENU
 
 
 # --- Modifiers ---------------------------------------------------------------
-MOD_SHIFT            = 0x0001
-MOD_CONTROL          = 0x0002
-MOD_ALT              = 0x0004
-MOD_SUPER            = 0x0008
+GLFW_MOD_SHIFT            = 0x0001
+GLFW_MOD_CONTROL          = 0x0002
+GLFW_MOD_ALT              = 0x0004
+GLFW_MOD_SUPER            = 0x0008
 
 # --- Mouse -------------------------------------------------------------------
-MOUSE_BUTTON_1       = 0
-MOUSE_BUTTON_2       = 1
-MOUSE_BUTTON_3       = 2
-MOUSE_BUTTON_4       = 3
-MOUSE_BUTTON_5       = 4
-MOUSE_BUTTON_6       = 5
-MOUSE_BUTTON_7       = 6
-MOUSE_BUTTON_8       = 7
-MOUSE_BUTTON_LAST    = MOUSE_BUTTON_8
-MOUSE_BUTTON_LEFT    = MOUSE_BUTTON_1
-MOUSE_BUTTON_RIGHT   = MOUSE_BUTTON_2
-MOUSE_BUTTON_MIDDLE  = MOUSE_BUTTON_3
+GLFW_MOUSE_BUTTON_1       = 0
+GLFW_MOUSE_BUTTON_2       = 1
+GLFW_MOUSE_BUTTON_3       = 2
+GLFW_MOUSE_BUTTON_4       = 3
+GLFW_MOUSE_BUTTON_5       = 4
+GLFW_MOUSE_BUTTON_6       = 5
+GLFW_MOUSE_BUTTON_7       = 6
+GLFW_MOUSE_BUTTON_8       = 7
+GLFW_MOUSE_BUTTON_LAST    = GLFW_MOUSE_BUTTON_8
+GLFW_MOUSE_BUTTON_LEFT    = GLFW_MOUSE_BUTTON_1
+GLFW_MOUSE_BUTTON_RIGHT   = GLFW_MOUSE_BUTTON_2
+GLFW_MOUSE_BUTTON_MIDDLE  = GLFW_MOUSE_BUTTON_3
 
 
 # --- Joystick ----------------------------------------------------------------
-JOYSTICK_1           = 0
-JOYSTICK_2           = 1
-JOYSTICK_3           = 2
-JOYSTICK_4           = 3
-JOYSTICK_5           = 4
-JOYSTICK_6           = 5
-JOYSTICK_7           = 6
-JOYSTICK_8           = 7
-JOYSTICK_9           = 8
-JOYSTICK_10          = 9
-JOYSTICK_11          = 10
-JOYSTICK_12          = 11
-JOYSTICK_13          = 12
-JOYSTICK_14          = 13
-JOYSTICK_15          = 14
-JOYSTICK_16          = 15
-JOYSTICK_LAST        = JOYSTICK_16
+GLFW_JOYSTICK_1           = 0
+GLFW_JOYSTICK_2           = 1
+GLFW_JOYSTICK_3           = 2
+GLFW_JOYSTICK_4           = 3
+GLFW_JOYSTICK_5           = 4
+GLFW_JOYSTICK_6           = 5
+GLFW_JOYSTICK_7           = 6
+GLFW_JOYSTICK_8           = 7
+GLFW_JOYSTICK_9           = 8
+GLFW_JOYSTICK_10          = 9
+GLFW_JOYSTICK_11          = 10
+GLFW_JOYSTICK_12          = 11
+GLFW_JOYSTICK_13          = 12
+GLFW_JOYSTICK_14          = 13
+GLFW_JOYSTICK_15          = 14
+GLFW_JOYSTICK_16          = 15
+GLFW_JOYSTICK_LAST        = GLFW_JOYSTICK_16
 
 
 # --- Error codes -------------------------------------------------------------
-NOT_INITIALIZED        = 0x00010001
-NO_CURRENT_CONTEXT     = 0x00010002
-INVALID_ENUM           = 0x00010003
-INVALID_VALUE          = 0x00010004
-OUT_OF_MEMORY          = 0x00010005
-API_UNAVAILABLE        = 0x00010006
-VERSION_UNAVAILABLE    = 0x00010007
-PLATFORM_ERROR         = 0x00010008
-FORMAT_UNAVAILABLE     = 0x00010009
+GLFW_NOT_INITIALIZED        = 0x00010001
+GLFW_NO_CURRENT_CONTEXT     = 0x00010002
+GLFW_INVALID_ENUM           = 0x00010003
+GLFW_INVALID_VALUE          = 0x00010004
+GLFW_OUT_OF_MEMORY          = 0x00010005
+GLFW_API_UNAVAILABLE        = 0x00010006
+GLFW_VERSION_UNAVAILABLE    = 0x00010007
+GLFW_PLATFORM_ERROR         = 0x00010008
+GLFW_FORMAT_UNAVAILABLE     = 0x00010009
 
 # ---
-FOCUSED                = 0x00020001
-ICONIFIED              = 0x00020002
-RESIZABLE              = 0x00020003
-VISIBLE                = 0x00020004
-DECORATED              = 0x00020005
+GLFW_FOCUSED                = 0x00020001
+GLFW_ICONIFIED              = 0x00020002
+GLFW_RESIZABLE              = 0x00020003
+GLFW_VISIBLE                = 0x00020004
+GLFW_DECORATED              = 0x00020005
 
 # --- 
-RED_BITS               = 0x00021001
-GREEN_BITS             = 0x00021002
-BLUE_BITS              = 0x00021003
-ALPHA_BITS             = 0x00021004
-DEPTH_BITS             = 0x00021005
-STENCIL_BITS           = 0x00021006
-ACCUM_RED_BITS         = 0x00021007
-ACCUM_GREEN_BITS       = 0x00021008
-ACCUM_BLUE_BITS        = 0x00021009
-ACCUM_ALPHA_BITS       = 0x0002100A
-AUX_BUFFERS            = 0x0002100B
-STEREO                 = 0x0002100C
-SAMPLES                = 0x0002100D
-SRGB_CAPABLE           = 0x0002100E
-REFRESH_RATE           = 0x0002100F
+GLFW_RED_BITS               = 0x00021001
+GLFW_GREEN_BITS             = 0x00021002
+GLFW_BLUE_BITS              = 0x00021003
+GLFW_ALPHA_BITS             = 0x00021004
+GLFW_DEPTH_BITS             = 0x00021005
+GLFW_STENCIL_BITS           = 0x00021006
+GLFW_ACCUM_RED_BITS         = 0x00021007
+GLFW_ACCUM_GREEN_BITS       = 0x00021008
+GLFW_ACCUM_BLUE_BITS        = 0x00021009
+GLFW_ACCUM_ALPHA_BITS       = 0x0002100A
+GLFW_AUX_BUFFERS            = 0x0002100B
+GLFW_STEREO                 = 0x0002100C
+GLFW_SAMPLES                = 0x0002100D
+GLFW_SRGB_CAPABLE           = 0x0002100E
+GLFW_REFRESH_RATE           = 0x0002100F
 
 # --- 
-CLIENT_API             = 0x00022001
-CONTEXT_VERSION_MAJOR  = 0x00022002
-CONTEXT_VERSION_MINOR  = 0x00022003
-CONTEXT_REVISION       = 0x00022004
-CONTEXT_ROBUSTNESS     = 0x00022005
-OPENGL_FORWARD_COMPAT  = 0x00022006
-OPENGL_DEBUG_CONTEXT   = 0x00022007
-OPENGL_PROFILE         = 0x00022008
+GLFW_CLIENT_API             = 0x00022001
+GLFW_CONTEXT_VERSION_MAJOR  = 0x00022002
+GLFW_CONTEXT_VERSION_MINOR  = 0x00022003
+GLFW_CONTEXT_REVISION       = 0x00022004
+GLFW_CONTEXT_ROBUSTNESS     = 0x00022005
+GLFW_OPENGL_FORWARD_COMPAT  = 0x00022006
+GLFW_OPENGL_DEBUG_CONTEXT   = 0x00022007
+GLFW_OPENGL_PROFILE         = 0x00022008
 
 # --- 
-OPENGL_API             = 0x00030001
-OPENGL_ES_API          = 0x00030002
+GLFW_OPENGL_API             = 0x00030001
+GLFW_OPENGL_ES_API          = 0x00030002
 
 # --- 
-NO_ROBUSTNESS          =          0
-NO_RESET_NOTIFICATION  = 0x00031001
-LOSE_CONTEXT_ON_RESET  = 0x00031002
+GLFW_NO_ROBUSTNESS          =          0
+GLFW_NO_RESET_NOTIFICATION  = 0x00031001
+GLFW_LOSE_CONTEXT_ON_RESET  = 0x00031002
 
 # --- 
-OPENGL_ANY_PROFILE     =          0
-OPENGL_CORE_PROFILE    = 0x00032001
-OPENGL_COMPAT_PROFILE  = 0x00032002
+GLFW_OPENGL_ANY_PROFILE     =          0
+GLFW_OPENGL_CORE_PROFILE    = 0x00032001
+GLFW_OPENGL_COMPAT_PROFILE  = 0x00032002
 
 # --- 
-CURSOR                 = 0x00033001
-STICKY_KEYS            = 0x00033002
-STICKY_MOUSE_BUTTONS   = 0x00033003
+GLFW_CURSOR                 = 0x00033001
+GLFW_STICKY_KEYS            = 0x00033002
+GLFW_STICKY_MOUSE_BUTTONS   = 0x00033003
 
 # --- 
-CURSOR_NORMAL          = 0x00034001
-CURSOR_HIDDEN          = 0x00034002
-CURSOR_DISABLED        = 0x00034003
+GLFW_CURSOR_NORMAL          = 0x00034001
+GLFW_CURSOR_HIDDEN          = 0x00034002
+GLFW_CURSOR_DISABLED        = 0x00034003
 
 # --- 
-CONNECTED              = 0x00040001
-DISCONNECTED           = 0x00040002
+GLFW_CONNECTED              = 0x00040001
+GLFW_DISCONNECTED           = 0x00040002
 
 
 # --- Structures --------------------------------------------------------------
-class vidmode_st(Structure):
+class GLFWvidmode(Structure):
     _fields_ = [ ('width',       c_int),
                  ('height',      c_int),
                  ('redBits',     c_int),
@@ -318,127 +318,127 @@ class vidmode_st(Structure):
                  ('blueBits',    c_int),
                  ('refreshRate', c_int) ]
 
-class gammaramp_st(Structure):
+class GLFWgammaramp(Structure):
     _fields_ = [ ('red',     POINTER(c_ushort)),
                  ('green',   POINTER(c_ushort)),
                  ('blue',    POINTER(c_ushort)),
                  ('size',    c_int) ]
 
-class window_st(Structure): pass
-class monitor_st(Structure): pass
+class GLFWwindow(Structure): pass
+class GLFWmonitor(Structure): pass
 
 # --- Callbacks ---------------------------------------------------------------
 errorfun           = CFUNCTYPE(None, c_int, c_char_p)
-windowposfun       = CFUNCTYPE(None, POINTER(window_st), c_int, c_int)
-windowsizefun      = CFUNCTYPE(None, POINTER(window_st), c_int, c_int)
-windowclosefun     = CFUNCTYPE(None, POINTER(window_st))
-windowrefreshfun   = CFUNCTYPE(None, POINTER(window_st))
-windowfocusfun     = CFUNCTYPE(None, POINTER(window_st), c_int)
-windowiconifyfun   = CFUNCTYPE(None, POINTER(window_st), c_int)
-framebuffersizefun = CFUNCTYPE(None, POINTER(window_st), c_int, c_int)
-mousebuttonfun     = CFUNCTYPE(None, POINTER(window_st), c_int, c_int, c_int)
-cursorposfun       = CFUNCTYPE(None, POINTER(window_st), c_double, c_double)
-cursorenterfun     = CFUNCTYPE(None, POINTER(window_st), c_int)
-scrollfun          = CFUNCTYPE(None, POINTER(window_st), c_double, c_double)
-keyfun             = CFUNCTYPE(None, POINTER(window_st), c_int, c_int, c_int, c_int)
-charfun            = CFUNCTYPE(None, POINTER(window_st), c_uint)
-monitorfun         = CFUNCTYPE(None, POINTER(monitor_st), c_int)
+windowposfun       = CFUNCTYPE(None, POINTER(GLFWwindow), c_int, c_int)
+windowsizefun      = CFUNCTYPE(None, POINTER(GLFWwindow), c_int, c_int)
+windowclosefun     = CFUNCTYPE(None, POINTER(GLFWwindow))
+windowrefreshfun   = CFUNCTYPE(None, POINTER(GLFWwindow))
+windowfocusfun     = CFUNCTYPE(None, POINTER(GLFWwindow), c_int)
+windowiconifyfun   = CFUNCTYPE(None, POINTER(GLFWwindow), c_int)
+framebuffersizefun = CFUNCTYPE(None, POINTER(GLFWwindow), c_int, c_int)
+mousebuttonfun     = CFUNCTYPE(None, POINTER(GLFWwindow), c_int, c_int, c_int)
+cursorposfun       = CFUNCTYPE(None, POINTER(GLFWwindow), c_double, c_double)
+cursorenterfun     = CFUNCTYPE(None, POINTER(GLFWwindow), c_int)
+scrollfun          = CFUNCTYPE(None, POINTER(GLFWwindow), c_double, c_double)
+keyfun             = CFUNCTYPE(None, POINTER(GLFWwindow), c_int, c_int, c_int, c_int)
+charfun            = CFUNCTYPE(None, POINTER(GLFWwindow), c_uint)
+monitorfun         = CFUNCTYPE(None, POINTER(GLFWmonitor), c_int)
 
 # --- Init --------------------------------------------------------------------
-Init                        = _glfw.glfwInit
-Terminate                   = _glfw.glfwTerminate
-#GetVersion                 = _glfw.glfwGetVersion
-GetVersionString            = _glfw.glfwGetVersionString
-GetVersionString.restype    = c_char_p
+glfwInit                        = _glfw.glfwInit
+glfwTerminate                   = _glfw.glfwTerminate
+#glfwGetVersion                 = _glfw.glfwGetVersion
+glfwGetVersionString            = _glfw.glfwGetVersionString
+glfwGetVersionString.restype    = c_char_p
 
 
 # --- Error -------------------------------------------------------------------
-#SetErrorCallback            = _glfw.glfwSetErrorCallback
+#glfwSetErrorCallback            = _glfw.glfwSetErrorCallback
 
 # --- Monitor -----------------------------------------------------------------
-# GetMonitors                 = _glfw.glfwGetMonitors
-# GetMonitors.restype         = POINTER(monitor_st)
-GetPrimaryMonitor           = _glfw.glfwGetPrimaryMonitor
-# GetMonitorPos               = _glfw.glfwGetMonitorPos
-# GetMonitorPhysicalSize      = _glfw.glfwGetMonitorPhysicalSize
-GetMonitorName              = _glfw.glfwGetMonitorName
-GetMonitorName.restype = c_char_p
-#SetMonitorCallback          = _glfw.glfwSetMonitorCallback
-#GetVideoModes               = _glfw.glfwGetVideoModes
-#GetVideoMode                = _glfw.glfwGetVideoMode
+# glfwGetMonitors                 = _glfw.glfwGetMonitors
+# glfwGetMonitors.restype         = POINTER(GLFWmonitor)
+glfwGetPrimaryMonitor           = _glfw.glfwGetPrimaryMonitor
+# glfwGetMonitorPos               = _glfw.glfwGetMonitorPos
+# glfwGetMonitorPhysicalSize      = _glfw.glfwGetMonitorPhysicalSize
+glfwGetMonitorName              = _glfw.glfwGetMonitorName
+glfwGetMonitorName.restype = c_char_p
+# glfwSetMonitorCallback          = _glfw.glfwSetMonitorCallback
+# glfwGetVideoModes               = _glfw.glfwGetVideoModes
+# glfwGetVideoMode                = _glfw.glfwGetVideoMode
 
 # --- Gama --------------------------------------------------------------------
-SetGamma                   = _glfw.glfwSetGamma
-#GetGammaRamp               = _glfw.glfwGetGammaRamp
-#SetGammaRamp               = _glfw.glfwSetGammaRamp
+glfwSetGamma                   = _glfw.glfwSetGamma
+# glfwGetGammaRamp               = _glfw.glfwGetGammaRamp
+# glfwSetGammaRamp               = _glfw.glfwSetGammaRamp
 
 # --- Window ------------------------------------------------------------------
-DefaultWindowHints         = _glfw.glfwDefaultWindowHints
-WindowHint                 = _glfw.glfwWindowHint
-# CreateWindow              = _glfw.glfwCreateWindow
-# DestroyWindow              = _glfw.glfwDestroyWindow
-WindowShouldClose          = _glfw.glfwWindowShouldClose
-SetWindowShouldClose       = _glfw.glfwSetWindowShouldClose
-SetWindowTitle             = _glfw.glfwSetWindowTitle
-# GetWindowPos              = _glfw.glfwGetWindowPos
-SetWindowPos               = _glfw.glfwSetWindowPos
-# GetWindowSize             = _glfw.glfwGetWindowSize
-SetWindowSize              = _glfw.glfwSetWindowSize
-# GetFramebufferSize        = _glfw.glfwGetFramebufferSize
-IconifyWindow              = _glfw.glfwIconifyWindow
-RestoreWindow              = _glfw.glfwRestoreWindow
-ShowWindow                 = _glfw.glfwShowWindow
-HideWindow                 = _glfw.glfwHideWindow
-GetWindowMonitor           = _glfw.glfwGetWindowMonitor
-GetWindowAttrib            = _glfw.glfwGetWindowAttrib
-SetWindowUserPointer       = _glfw.glfwSetWindowUserPointer
-GetWindowUserPointer       = _glfw.glfwGetWindowUserPointer
-#SetWindowPosCallback       = _glfw.glfwSetWindowPosCallback
-#SetWindowSizeCallback      = _glfw.glfwSetWindowSizeCallback
-#SetWindowCloseCallback     = _glfw.glfwSetWindowCloseCallback
-#SetWindowRefreshCallback   = _glfw.glfwSetWindowRefreshCallback
-#SetWindowFocusCallback     = _glfw.glfwSetWindowFocusCallback
-#SetWindowIconifyCallback   = _glfw.glfwSetWindowIconifyCallback
-#SetFramebufferSizeCallback = _glfw.glfwSetFramebufferSizeCallback
-PollEvents                 = _glfw.glfwPollEvents
-WaitEvents                 = _glfw.glfwWaitEvents
+glfwDefaultWindowHints         = _glfw.glfwDefaultWindowHints
+glfwWindowHint                 = _glfw.glfwWindowHint
+# glfwCreateWindow              = _glfw.glfwCreateWindow
+# glfwDestroyWindow              = _glfw.glfwDestroyWindow
+glfwWindowShouldClose          = _glfw.glfwWindowShouldClose
+glfwSetWindowShouldClose       = _glfw.glfwSetWindowShouldClose
+glfwSetWindowTitle             = _glfw.glfwSetWindowTitle
+# glfwGetWindowPos              = _glfw.glfwGetWindowPos
+glfwSetWindowPos               = _glfw.glfwSetWindowPos
+# glfwGetWindowSize             = _glfw.glfwGetWindowSize
+glfwSetWindowSize              = _glfw.glfwSetWindowSize
+# glfwGetFramebufferSize        = _glfw.glfwGetFramebufferSize
+glfwIconifyWindow              = _glfw.glfwIconifyWindow
+glfwRestoreWindow              = _glfw.glfwRestoreWindow
+glfwShowWindow                 = _glfw.glfwShowWindow
+glfwHideWindow                 = _glfw.glfwHideWindow
+glfwGetWindowMonitor           = _glfw.glfwGetWindowMonitor
+glfwGetWindowAttrib            = _glfw.glfwGetWindowAttrib
+glfwSetWindowUserPointer       = _glfw.glfwSetWindowUserPointer
+glfwGetWindowUserPointer       = _glfw.glfwGetWindowUserPointer
+# glfwSetWindowPosCallback       = _glfw.glfwSetWindowPosCallback
+# glfwSetWindowSizeCallback      = _glfw.glfwSetWindowSizeCallback
+# glfwSetWindowCloseCallback     = _glfw.glfwSetWindowCloseCallback
+# glfwSetWindowRefreshCallback   = _glfw.glfwSetWindowRefreshCallback
+# glfwSetWindowFocusCallback     = _glfw.glfwSetWindowFocusCallback
+# glfwSetWindowIconifyCallback   = _glfw.glfwSetWindowIconifyCallback
+# glfwSetFramebufferSizeCallback = _glfw.glfwSetFramebufferSizeCallback
+glfwPollEvents                 = _glfw.glfwPollEvents
+glfwWaitEvents                 = _glfw.glfwWaitEvents
 
 # --- Input -------------------------------------------------------------------
-GetInputMode               = _glfw.glfwGetInputMode
-SetInputMode               = _glfw.glfwSetInputMode
-GetKey                     = _glfw.glfwGetKey
-GetMouseButton             = _glfw.glfwGetMouseButton
-#GetCursorPos               = _glfw.glfwGetCursorPos
-SetCursorPos               = _glfw.glfwSetCursorPos
-#SetKeyCallback             = _glfw.glfwSetKeyCallback
-#SetCharCallback            = _glfw.glfwSetCharCallback
-#SetMouseButtonCallback     = _glfw.glfwSetMouseButtonCallback
-#SetCursorPosCallback       = _glfw.glfwSetCursorPosCallback
-#SetCursorEnterCallback     = _glfw.glfwSetCursorEnterCallback
-#SetScrollCallback          = _glfw.glfwSetScrollCallback
-JoystickPresent            = _glfw.glfwJoystickPresent
-# GetJoystickAxes            = _glfw.glfwGetJoystickAxes
-# GetJoystickButtons         = _glfw.glfwGetJoystickButtons
-GetJoystickName            = _glfw.glfwGetJoystickName
-GetJoystickName.restype = c_char_p
+glfwGetInputMode               = _glfw.glfwGetInputMode
+glfwSetInputMode               = _glfw.glfwSetInputMode
+glfwGetKey                     = _glfw.glfwGetKey
+glfwGetMouseButton             = _glfw.glfwGetMouseButton
+# glfwGetCursorPos               = _glfw.glfwGetCursorPos
+glfwSetCursorPos               = _glfw.glfwSetCursorPos
+# glfwSetKeyCallback             = _glfw.glfwSetKeyCallback
+# glfwSetCharCallback            = _glfw.glfwSetCharCallback
+# glfwSetMouseButtonCallback     = _glfw.glfwSetMouseButtonCallback
+# glfwSetCursorPosCallback       = _glfw.glfwSetCursorPosCallback
+# glfwSetCursorEnterCallback     = _glfw.glfwSetCursorEnterCallback
+# glfwSetScrollCallback          = _glfw.glfwSetScrollCallback
+glfwJoystickPresent            = _glfw.glfwJoystickPresent
+# glfwGetJoystickAxes            = _glfw.glfwGetJoystickAxes
+# glfwGetJoystickButtons         = _glfw.glfwGetJoystickButtons
+glfwGetJoystickName            = _glfw.glfwGetJoystickName
+glfwGetJoystickName.restype = c_char_p
 
 # --- Clipboard ---------------------------------------------------------------
-SetClipboardString         = _glfw.glfwSetClipboardString
-GetClipboardString         = _glfw.glfwGetClipboardString
-GetClipboardString.restype = c_char_p
+glfwSetClipboardString         = _glfw.glfwSetClipboardString
+glfwGetClipboardString         = _glfw.glfwGetClipboardString
+glfwGetClipboardString.restype = c_char_p
 
 # --- Timer -------------------------------------------------------------------
-GetTime                    = _glfw.glfwGetTime
-GetTime.restype = c_double
-SetTime                    = _glfw.glfwSetTime
+glfwGetTime                    = _glfw.glfwGetTime
+glfwGetTime.restype = c_double
+glfwSetTime                    = _glfw.glfwSetTime
 
 # --- Context -----------------------------------------------------------------
-MakeContextCurrent         = _glfw.glfwMakeContextCurrent
-GetCurrentContext          = _glfw.glfwGetCurrentContext
-SwapBuffers                = _glfw.glfwSwapBuffers
-SwapInterval               = _glfw.glfwSwapInterval
-ExtensionSupported         = _glfw.glfwExtensionSupported
-GetProcAddress             = _glfw.glfwGetProcAddress
+glfwMakeContextCurrent         = _glfw.glfwMakeContextCurrent
+glfwGetCurrentContext          = _glfw.glfwGetCurrentContext
+glfwSwapBuffers                = _glfw.glfwSwapBuffers
+glfwSwapInterval               = _glfw.glfwSwapInterval
+glfwExtensionSupported         = _glfw.glfwExtensionSupported
+glfwGetProcAddress             = _glfw.glfwGetProcAddress
 
 
 
@@ -452,8 +452,8 @@ __c_callbacks__ = {}
 __py_callbacks__ = {}
 
 
-def CreateWindow(width=640, height=480, title="GLFW Window", monitor=None, share=None):
-    _glfw.glfwCreateWindow.restype = POINTER(window_st)
+def glfwCreateWindow(width=640, height=480, title="GLFW Window", monitor=None, share=None):
+    _glfw.glfwCreateWindow.restype = POINTER(GLFWwindow)
     window = _glfw.glfwCreateWindow(width,height,title,monitor,share)
     __windows__.append(window)
     index = __windows__.index(window)
@@ -475,7 +475,7 @@ def CreateWindow(width=640, height=480, title="GLFW Window", monitor=None, share
                                 'scrollfun'          : None }
     return window
 
-def DestroyWindow(window):
+def glfwDestroyWindow(window):
     index = __windows__.index(window)
     _glfw.glfwDestroyWindow(window)
     # We do not delete window from the list (or it would impact windows numbering)
@@ -483,42 +483,41 @@ def DestroyWindow(window):
     del __c_callbacks__[index]
     del __py_callbacks__[index]
 
-
-def GetVersion():
+def glfwGetVersion():
     major, minor, rev = c_int(0), c_int(0), c_int(0)
     _glfw.glfwGetVersion( byref(major), byref(minor), byref(rev) )
     return major.value, minor.value, rev.value
 
-def GetWindowPos(window):
+def glfwGetWindowPos(window):
     xpos, ypos = c_int(0), c_int(0)
     _glfw.glfwGetWindowPos(window, byref(xpos), byref(ypos))
     return xpos.value, ypos.value
 
-def GetCursorPos(window):
+def glfwGetCursorPos(window):
     xpos, ypos = c_int(0), c_int(0)
     _glfw.glfwGetCursorPos(window, byref(xpos), byref(ypos))
     return xpos.value, ypos.value
 
-def GetWindowSize(window):
+def glfwGetWindowSize(window):
     width, height = c_int(0), c_int(0)
     _glfw.glfwGetWindowSize(window, byref(width), byref(height))
     return width.value, height.value
 
-def GetFramebufferSize(window):
+def glfwGetFramebufferSize(window):
     width, height = c_int(0), c_int(0)
     _glfw.glfwGetFramebufferSize(window, byref(width), byref(height))
     return width.value, height.value
 
 
-def GetMonitors():
+def glfwGetMonitors():
     count = c_int(0)
-    _glfw.glfwGetMonitors.restype = POINTER(POINTER(monitor_st))
+    _glfw.glfwGetMonitors.restype = POINTER(POINTER(GLFWmonitort))
     c_monitors = _glfw.glfwGetMonitors( byref(count) )
     return [c_monitors[i] for i in range(count.value)]
 
-def GetVideoModes(monitor):
+def glfwGetVideoModes(monitor):
     count = c_int(0)
-    _glfw.glfwGetVideoModes.restype = POINTER(vidmode_st)
+    _glfw.glfwGetVideoModes.restype = POINTER(GLFWvidmode)
     c_modes = _glfw.glfwGetVideoModes( monitor, byref(count) )
     modes = []
     for i in range(count.value):
@@ -530,18 +529,18 @@ def GetVideoModes(monitor):
                        c_modes[i].refreshRate ) )
     return modes
 
-def GetMonitorPos(monitor):
+def glfwGetMonitorPos(monitor):
     xpos, ypos = c_int(0), c_int(0)
     _glfw.glfwGetMonitorPos(monitor, byref(xpos), byref(ypos))
     return xpos.value, ypos.value
 
-def GetMonitorPhysicalSize(monitor):
+def glfwGetMonitorPhysicalSize(monitor):
     width, height = c_int(0), c_int(0)
     _glfw.glfwGetMonitorPhysicalSize(monitor, byref(width), byref(height))
     return width.value, height.value
 
-def GetVideoMode(monitor):
-    _glfw.glfwGetVideoMode.restype = POINTER(vidmode_st)
+def glfwGetVideoMode(monitor):
+    _glfw.glfwGetVideoMode.restype = POINTER(GLFWvidmode)
     c_mode = _glfw.glfwGetVideoModes(monitor)
     return (c_modes.width,
             c_modes.height,
@@ -551,7 +550,7 @@ def GetVideoMode(monitor):
             c_modes.refreshRate )
 
 def GetGammaRamp(monitor):
-    _glfw.glfwGetGammaRamp.restype = POINTER(gammaramp_st)
+    _glfw.glfwGetGammaRamp.restype = POINTER(GLFWgammaramp)
     c_gamma = _glfw.glfwGetGammaRamp(monitor).contents
     gamma = {'red':[], 'green':[], 'blue':[]}
     if c_gamma:
@@ -561,13 +560,13 @@ def GetGammaRamp(monitor):
             gamma['blue'].append(c_gamma.blue[i])
     return gamma
 
-def GetJoystickAxes(joy):
+def glfwGetJoystickAxes(joy):
     count = c_int(0)
     _glfw.glfwGetJoystickAxes.restype = POINTER(c_float)
     c_axes = _glfw.glfwGetJoystickAxes(joy, byref(count))
     axes = [c_axes[i].value for i in range(count)]
 
-def GetJoystickButtons(joy):
+def glfwGetJoystickButtons(joy):
     count = c_int(0)
     _glfw.glfwGetJoystickButtons.restype = POINTER(c_int)
     c_buttons = _glfw.glfwGetJoystickButtons(joy, byref(count))
@@ -577,7 +576,7 @@ def GetJoystickButtons(joy):
 # --- Callbacks ---------------------------------------------------------------
 
 def __callback__(name):
-    callback = 'Set%sCallback' % name
+    callback = 'glfwSet%sCallback' % name
     fun      = '%sfun' % name.lower()
     code = """
 def %(callback)s(window, callback = None):
@@ -586,7 +585,7 @@ def %(callback)s(window, callback = None):
     __py_callbacks__[index]['%(fun)s'] = callback
     if callback: callback = %(fun)s(callback)
     __c_callbacks__[index]['%(fun)s'] = callback
-    _glfw.glfw%(callback)s(window, callback)
+    _glfw.%(callback)s(window, callback)
     return old_callback"""  % {'callback': callback, 'fun': fun}
     return code
 

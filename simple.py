@@ -41,29 +41,29 @@ if __name__ == '__main__':
     import OpenGL.GL as gl
 
     def on_key(window, key, scancode, action, mods):
-        if key == glfw.KEY_ESCAPE and action == glfw.PRESS:
-            glfw.SetWindowShouldClose(window,1)
+        if key == glfw.GLFW_KEY_ESCAPE and action == glfw.GLFW_PRESS:
+            glfw.glfwSetWindowShouldClose(window,1)
 
     # Initialize the library
-    if not glfw.Init():
+    if not glfw.glfwInit():
         sys.exit()
 
     # Create a windowed mode window and its OpenGL context
-    window = glfw.CreateWindow(640, 480, "Hello World", None, None)
+    window = glfw.glfwCreateWindow(640, 480, "Hello World", None, None)
     if not window:
-        glfw.Terminate()
+        glfw.glfwTerminate()
         sys.exit()
 
     # Make the window's context current
-    glfw.MakeContextCurrent(window)
+    glfw.glfwMakeContextCurrent(window)
 
     # Install a key handler
-    glfw.SetKeyCallback(window, on_key)
+    glfw.glfwSetKeyCallback(window, on_key)
 
     # Loop until the user closes the window
-    while not glfw.WindowShouldClose(window):
+    while not glfw.glfwWindowShouldClose(window):
         # Render here
-        width, height = glfw.GetFramebufferSize(window)
+        width, height = glfw.glfwGetFramebufferSize(window)
         ratio = width / float(height)
         gl.glViewport(0, 0, width, height)
         gl.glClear(gl.GL_COLOR_BUFFER_BIT)
@@ -72,7 +72,7 @@ if __name__ == '__main__':
         gl.glOrtho(-ratio, ratio, -1, 1, 1, -1)
         gl.glMatrixMode(gl.GL_MODELVIEW)
         gl.glLoadIdentity()
-        gl.glRotatef(glfw.GetTime() * 50, 0, 0, 1)
+        gl.glRotatef(glfw.glfwGetTime() * 50, 0, 0, 1)
         gl.glBegin(gl.GL_TRIANGLES)
         gl.glColor3f(1, 0, 0)
         gl.glVertex3f(-0.6, -0.4, 0)
@@ -83,9 +83,9 @@ if __name__ == '__main__':
         gl.glEnd()
 
         # Swap front and back buffers
-        glfw.SwapBuffers(window)
+        glfw.glfwSwapBuffers(window)
 
         # Poll for and process events
-        glfw.PollEvents()
+        glfw.glfwPollEvents()
 
-    glfw.Terminate()
+    glfw.glfwTerminate()
