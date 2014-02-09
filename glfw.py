@@ -38,7 +38,6 @@ import os
 import ctypes.util
 from ctypes import (Structure, POINTER, CFUNCTYPE, byref, c_char_p, c_int,
                     c_uint, c_double, c_float, c_ushort)
-from ...util._logging import logger  # noqa
 
 
 _glfw_file = None
@@ -618,7 +617,6 @@ def __callback__(name):
 def %(callback)s(window, callback = None):
     index = __windows__.index(window)
     old_callback = __py_callbacks__[index]['%(fun)s']
-    logger.debug(old_callback)
     __py_callbacks__[index]['%(fun)s'] = callback
     if callback: callback = %(fun)s(callback)
     __c_callbacks__[index]['%(fun)s'] = callback
