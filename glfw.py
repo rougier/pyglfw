@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 # -----------------------------------------------------------------------------
 #  GLFW - An OpenGL framework
 #  API version: 3.0.1
@@ -7,31 +9,37 @@
 #  Copyright (c) 2006-2010 Camilla Berglund
 #
 #  Python bindings - Copyright (c) 2013 Nicolas P. Rougier
-#  
+#
 #  This software is provided 'as-is', without any express or implied
 #  warranty. In no event will the authors be held liable for any damages
 #  arising from the use of this software.
-#  
+#
 #  Permission is granted to anyone to use this software for any purpose,
 #  including commercial applications, and to alter it and redistribute it
 #  freely, subject to the following restrictions:
-#  
+#
 #  1. The origin of this software must not be misrepresented; you must not
 #     claim that you wrote the original software. If you use this software
 #     in a product, an acknowledgment in the product documentation would
 #     be appreciated but is not required.
-#  
+#
 #  2. Altered source versions must be plainly marked as such, and must not
 #     be misrepresented as being the original software.
-#  
+#
 #  3. This notice may not be removed or altered from any source
 #     distribution.
-#  
+#
 # -----------------------------------------------------------------------------
-import os,sys
-import ctypes
+
+# NOTE:
+# This source has been modified from its original form by the vispy dev team
+
+import os
 import ctypes.util
-from ctypes import *
+from ctypes import (Structure, POINTER, CFUNCTYPE, byref, c_char_p, c_int,
+                    c_uint, c_double, c_float, c_ushort)
+from ...util._logging import logger  # noqa
+
 
 _glfw_file = None
 
@@ -42,21 +50,38 @@ if 'GLFW_LIBRARY' in os.environ:
 
 # Else, try to find it
 if _glfw_file is None:
-    _glfw_file = ctypes.util.find_library('glfw')
+    order = ['glfw', 'glfw3']
+    for check in order:
+        _glfw_file = ctypes.util.find_library(check)
+        if _glfw_file is not None:
+            break
 
 # Else, we failed and exit
 if _glfw_file is None:
-    raise( RuntimeError, 'GLFW library not found' )
+    raise OSError('GLFW library not found')
 
-_glfw = CDLL(_glfw_file)
+# Load it
+_glfw = ctypes.CDLL(_glfw_file)
 
+
+# Ensure it's new enough
+def glfwGetVersion():
+    major, minor, rev = c_int(0), c_int(0), c_int(0)
+    _glfw.glfwGetVersion(byref(major), byref(minor), byref(rev))
+    return major.value, minor.value, rev.value
+
+version = glfwGetVersion()
+
+if version[0] != 3:
+    version = '.'.join([str(v) for v in version])
+    raise OSError('Need GLFW library version 3, found version %s' % version)
 
 
 # --- Version -----------------------------------------------------------------
-GLFW_VERSION_MAJOR      = 3
-GLFW_VERSION_MINOR      = 0
-GLFW_VERSION_REVISION   = 1
-__version__ = GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION 
+GLFW_VERSION_MAJOR      = version[0]
+GLFW_VERSION_MINOR      = version[1]
+GLFW_VERSION_REVISION   = version[2]
+__version__ = GLFW_VERSION_MAJOR, GLFW_VERSION_MINOR, GLFW_VERSION_REVISION
 
 # --- Input handling definitions ----------------------------------------------
 GLFW_RELEASE            = 0
@@ -253,7 +278,7 @@ GLFW_RESIZABLE              = 0x00020003
 GLFW_VISIBLE                = 0x00020004
 GLFW_DECORATED              = 0x00020005
 
-# --- 
+# ---
 GLFW_RED_BITS               = 0x00021001
 GLFW_GREEN_BITS             = 0x00021002
 GLFW_BLUE_BITS              = 0x00021003
@@ -270,7 +295,7 @@ GLFW_SAMPLES                = 0x0002100D
 GLFW_SRGB_CAPABLE           = 0x0002100E
 GLFW_REFRESH_RATE           = 0x0002100F
 
-# --- 
+# ---
 GLFW_CLIENT_API             = 0x00022001
 GLFW_CONTEXT_VERSION_MAJOR  = 0x00022002
 GLFW_CONTEXT_VERSION_MINOR  = 0x00022003
@@ -280,31 +305,31 @@ GLFW_OPENGL_FORWARD_COMPAT  = 0x00022006
 GLFW_OPENGL_DEBUG_CONTEXT   = 0x00022007
 GLFW_OPENGL_PROFILE         = 0x00022008
 
-# --- 
+# ---
 GLFW_OPENGL_API             = 0x00030001
 GLFW_OPENGL_ES_API          = 0x00030002
 
-# --- 
+# ---
 GLFW_NO_ROBUSTNESS          =          0
 GLFW_NO_RESET_NOTIFICATION  = 0x00031001
 GLFW_LOSE_CONTEXT_ON_RESET  = 0x00031002
 
-# --- 
+# ---
 GLFW_OPENGL_ANY_PROFILE     =          0
 GLFW_OPENGL_CORE_PROFILE    = 0x00032001
 GLFW_OPENGL_COMPAT_PROFILE  = 0x00032002
 
-# --- 
+# ---
 GLFW_CURSOR                 = 0x00033001
 GLFW_STICKY_KEYS            = 0x00033002
 GLFW_STICKY_MOUSE_BUTTONS   = 0x00033003
 
-# --- 
+# ---
 GLFW_CURSOR_NORMAL          = 0x00034001
 GLFW_CURSOR_HIDDEN          = 0x00034002
 GLFW_CURSOR_DISABLED        = 0x00034003
 
-# --- 
+# ---
 GLFW_CONNECTED              = 0x00040001
 GLFW_DISCONNECTED           = 0x00040002
 
@@ -348,9 +373,6 @@ monitorfun         = CFUNCTYPE(None, POINTER(GLFWmonitor), c_int)
 glfwInit                        = _glfw.glfwInit
 glfwTerminate                   = _glfw.glfwTerminate
 #glfwGetVersion                 = _glfw.glfwGetVersion
-glfwGetVersionString            = _glfw.glfwGetVersionString
-glfwGetVersionString.restype    = c_char_p
-
 
 # --- Error -------------------------------------------------------------------
 #glfwSetErrorCallback            = _glfw.glfwSetErrorCallback
@@ -446,16 +468,19 @@ glfwGetProcAddress             = _glfw.glfwGetProcAddress
 
 # This keeps track of current windows
 __windows__ = []
+__destroyed__ = []
 
 # This is to prevent garbage collection on callbacks
 __c_callbacks__ = {}
 __py_callbacks__ = {}
 
 
-def glfwCreateWindow(width=640, height=480, title="GLFW Window", monitor=None, share=None):
+def glfwCreateWindow(width=640, height=480, title="GLFW Window",
+                     monitor=None, share=None):
     _glfw.glfwCreateWindow.restype = POINTER(GLFWwindow)
     window = _glfw.glfwCreateWindow(width,height,title,monitor,share)
     __windows__.append(window)
+    __destroyed__.append(False)
     index = __windows__.index(window)
     __c_callbacks__[index] = {}
     __py_callbacks__[index] = { 'errorfun'           : None,
@@ -475,33 +500,35 @@ def glfwCreateWindow(width=640, height=480, title="GLFW Window", monitor=None, s
                                 'scrollfun'          : None }
     return window
 
+
 def glfwDestroyWindow(window):
     index = __windows__.index(window)
-    _glfw.glfwDestroyWindow(window)
-    # We do not delete window from the list (or it would impact windows numbering)
-    # del __windows__[index]
-    del __c_callbacks__[index]
-    del __py_callbacks__[index]
+    if not __destroyed__[index]:
+        _glfw.glfwDestroyWindow(window)
+        # We do not delete window from the list (or it would impact numbering)
+        del __c_callbacks__[index]
+        del __py_callbacks__[index]
+        # del __windows__[index]
+    __destroyed__[index] = True
 
-def glfwGetVersion():
-    major, minor, rev = c_int(0), c_int(0), c_int(0)
-    _glfw.glfwGetVersion( byref(major), byref(minor), byref(rev) )
-    return major.value, minor.value, rev.value
 
 def glfwGetWindowPos(window):
     xpos, ypos = c_int(0), c_int(0)
     _glfw.glfwGetWindowPos(window, byref(xpos), byref(ypos))
     return xpos.value, ypos.value
 
+
 def glfwGetCursorPos(window):
-    xpos, ypos = c_int(0), c_int(0)
+    xpos, ypos = c_double(0), c_double(0)
     _glfw.glfwGetCursorPos(window, byref(xpos), byref(ypos))
-    return xpos.value, ypos.value
+    return int(xpos.value), int(ypos.value)
+
 
 def glfwGetWindowSize(window):
     width, height = c_int(0), c_int(0)
     _glfw.glfwGetWindowSize(window, byref(width), byref(height))
     return width.value, height.value
+
 
 def glfwGetFramebufferSize(window):
     width, height = c_int(0), c_int(0)
@@ -511,9 +538,10 @@ def glfwGetFramebufferSize(window):
 
 def glfwGetMonitors():
     count = c_int(0)
-    _glfw.glfwGetMonitors.restype = POINTER(POINTER(GLFWmonitort))
+    _glfw.glfwGetMonitors.restype = POINTER(POINTER(GLFWmonitor))
     c_monitors = _glfw.glfwGetMonitors( byref(count) )
     return [c_monitors[i] for i in range(count.value)]
+
 
 def glfwGetVideoModes(monitor):
     count = c_int(0)
@@ -529,25 +557,29 @@ def glfwGetVideoModes(monitor):
                        c_modes[i].refreshRate ) )
     return modes
 
+
 def glfwGetMonitorPos(monitor):
     xpos, ypos = c_int(0), c_int(0)
     _glfw.glfwGetMonitorPos(monitor, byref(xpos), byref(ypos))
     return xpos.value, ypos.value
+
 
 def glfwGetMonitorPhysicalSize(monitor):
     width, height = c_int(0), c_int(0)
     _glfw.glfwGetMonitorPhysicalSize(monitor, byref(width), byref(height))
     return width.value, height.value
 
+
 def glfwGetVideoMode(monitor):
     _glfw.glfwGetVideoMode.restype = POINTER(GLFWvidmode)
-    c_mode = _glfw.glfwGetVideoModes(monitor)
+    c_modes = _glfw.glfwGetVideoModes(monitor)
     return (c_modes.width,
             c_modes.height,
             c_modes.redBits,
             c_modes.blueBits,
             c_modes.greenBits,
             c_modes.refreshRate )
+
 
 def GetGammaRamp(monitor):
     _glfw.glfwGetGammaRamp.restype = POINTER(GLFWgammaramp)
@@ -560,17 +592,21 @@ def GetGammaRamp(monitor):
             gamma['blue'].append(c_gamma.blue[i])
     return gamma
 
+
 def glfwGetJoystickAxes(joy):
     count = c_int(0)
     _glfw.glfwGetJoystickAxes.restype = POINTER(c_float)
     c_axes = _glfw.glfwGetJoystickAxes(joy, byref(count))
     axes = [c_axes[i].value for i in range(count)]
+    return axes
+
 
 def glfwGetJoystickButtons(joy):
     count = c_int(0)
     _glfw.glfwGetJoystickButtons.restype = POINTER(c_int)
     c_buttons = _glfw.glfwGetJoystickButtons(joy, byref(count))
     buttons = [c_buttons[i].value for i in range(count)]
+    return buttons
 
 
 # --- Callbacks ---------------------------------------------------------------
@@ -582,6 +618,7 @@ def __callback__(name):
 def %(callback)s(window, callback = None):
     index = __windows__.index(window)
     old_callback = __py_callbacks__[index]['%(fun)s']
+    logger.debug(old_callback)
     __py_callbacks__[index]['%(fun)s'] = callback
     if callback: callback = %(fun)s(callback)
     __c_callbacks__[index]['%(fun)s'] = callback
@@ -589,17 +626,17 @@ def %(callback)s(window, callback = None):
     return old_callback"""  % {'callback': callback, 'fun': fun}
     return code
 
-exec __callback__('Error')
-exec __callback__('Monitor')
-exec __callback__('WindowPos')
-exec __callback__('WindowSize')
-exec __callback__('WindowClose')
-exec __callback__('WindowRefresh')
-exec __callback__('WindowFocus')
-exec __callback__('WindowIconify')
-exec __callback__('FramebufferSize')
-exec __callback__('Key')
-exec __callback__('Char')
-exec __callback__('MouseButton')
-exec __callback__('CursorPos')
-exec __callback__('Scroll')
+exec(__callback__('Error'))
+exec(__callback__('Monitor'))
+exec(__callback__('WindowPos'))
+exec(__callback__('WindowSize'))
+exec(__callback__('WindowClose'))
+exec(__callback__('WindowRefresh'))
+exec(__callback__('WindowFocus'))
+exec(__callback__('WindowIconify'))
+exec(__callback__('FramebufferSize'))
+exec(__callback__('Key'))
+exec(__callback__('Char'))
+exec(__callback__('MouseButton'))
+exec(__callback__('CursorPos'))
+exec(__callback__('Scroll'))
