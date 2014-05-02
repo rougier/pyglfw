@@ -72,7 +72,7 @@ if __name__ == '__main__':
         gl.glOrtho(-ratio, ratio, -1, 1, 1, -1)
         gl.glMatrixMode(gl.GL_MODELVIEW)
         gl.glLoadIdentity()
-        gl.glRotatef(glfw.glfwGetTime() * 50, 0, 0, 1)
+        # gl.glRotatef(glfw.glfwGetTime() * 50, 0, 0, 1)
         gl.glBegin(gl.GL_TRIANGLES)
         gl.glColor3f(1, 0, 0)
         gl.glVertex3f(-0.6, -0.4, 0)
