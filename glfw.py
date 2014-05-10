@@ -472,7 +472,7 @@ __destroyed__ = []
 # This is to prevent garbage collection on callbacks
 __c_callbacks__ = {}
 __py_callbacks__ = {}
-
+__c_error_callback__ = None
 
 def glfwCreateWindow(width=640, height=480, title="GLFW Window",
                      monitor=None, share=None):
@@ -624,7 +624,6 @@ def %(callback)s(window, callback = None):
     return old_callback"""  % {'callback': callback, 'fun': fun}
     return code
 
-exec(__callback__('Error'))
 exec(__callback__('Monitor'))
 exec(__callback__('WindowPos'))
 exec(__callback__('WindowSize'))
@@ -638,3 +637,10 @@ exec(__callback__('Char'))
 exec(__callback__('MouseButton'))
 exec(__callback__('CursorPos'))
 exec(__callback__('Scroll'))
+
+
+# Error callback does not take window parameter
+def glfwSetErrorCallback(callback = None):
+    global __c_error_callback__
+    __c_error_callback__ = errorfun(callback)
+    _glfw.glfwSetErrorCallback(__c_error_callback__)
