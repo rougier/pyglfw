@@ -49,7 +49,7 @@ if __name__ == '__main__':
         sys.exit()
 
     # Create a windowed mode window and its OpenGL context
-    window = glfw.glfwCreateWindow(640, 480, "Hello World", None, None)
+    window = glfw.glfwCreateWindow(640, 480, str.encode("Hello World"), None, None)
     if not window:
         glfw.glfwTerminate()
         sys.exit()
