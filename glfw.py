@@ -403,7 +403,7 @@ glfwWindowHint                 = _glfw.glfwWindowHint
 # glfwDestroyWindow              = _glfw.glfwDestroyWindow
 glfwWindowShouldClose          = _glfw.glfwWindowShouldClose
 glfwSetWindowShouldClose       = _glfw.glfwSetWindowShouldClose
-glfwSetWindowTitle             = _glfw.glfwSetWindowTitle
+# glfwSetWindowTitle             = _glfw.glfwSetWindowTitle
 # glfwGetWindowPos              = _glfw.glfwGetWindowPos
 glfwSetWindowPos               = _glfw.glfwSetWindowPos
 # glfwGetWindowSize             = _glfw.glfwGetWindowSize
@@ -480,6 +480,7 @@ __c_error_callback__ = None
 def glfwCreateWindow(width=640, height=480, title="GLFW Window",
                      monitor=None, share=None):
     _glfw.glfwCreateWindow.restype = POINTER(GLFWwindow)
+    title = title if type(title) == bytes else title.encode('utf-8')
     window = _glfw.glfwCreateWindow(width,height,title,monitor,share)
     __windows__.append(window)
     __destroyed__.append(False)
@@ -502,6 +503,10 @@ def glfwCreateWindow(width=640, height=480, title="GLFW Window",
                                 'scrollfun'          : None }
     return window
 
+# Encapsulate to Python version because of encoding issue
+def glfwSetWindowTitle(window,title):
+    title = title if type(title) == bytes else title.encode('utf-8')
+    _glfw.glfwSetWindowTitle(window,title)
 
 def glfwDestroyWindow(window):
     index = __windows__.index(window)
